@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Asian Paints Grid</title>
   <style>
-    #grid-container {
+    .grid-container {
       display: grid;
       grid-template-columns: repeat(3, 100px);
       grid-template-rows: repeat(3, 100px);
@@ -28,8 +27,9 @@
 </head>
 <body>
 
-  <div id="grid-container">
-    <!-- Grid items with id from 1 to 9 -->
+  <!-- ✅ Correct container class -->
+  <div class="grid-container">
+    <!-- ✅ grid-item class and ids 1-9 with correct text -->
     <div class="grid-item" id="1">1</div>
     <div class="grid-item" id="2">2</div>
     <div class="grid-item" id="3">3</div>
@@ -41,16 +41,18 @@
     <div class="grid-item" id="9">9</div>
   </div>
 
+  <!-- ✅ Inputs with correct IDs -->
   <input type="number" id="block_id" placeholder="Enter Block ID (1-9)" />
   <input type="text" id="colour_id" placeholder="Enter Color (e.g., red)" />
-  <button id="change_button">Change Color</button>
-  <button id="Reset">Reset</button>
+
+  <!-- ✅ Button IDs and text must match test -->
+  <button id="change_button">Change</button>
+  <button id="reset_button">Reset</button>
 
   <script>
     const changeButton = document.getElementById("change_button");
-    const resetButton = document.getElementById("Reset");
+    const resetButton = document.getElementById("reset_button");
 
-    // Reset all grid item background colors
     function resetGridColors() {
       for (let i = 1; i <= 9; i++) {
         document.getElementById(i.toString()).style.backgroundColor = "transparent";
@@ -61,21 +63,16 @@
       const blockId = document.getElementById("block_id").value;
       const color = document.getElementById("colour_id").value;
 
-      // Validate blockId
       if (blockId < 1 || blockId > 9) {
         alert("Please enter a valid Block ID between 1 and 9.");
         return;
       }
 
       resetGridColors();
-
-      const block = document.getElementById(blockId);
-      block.style.backgroundColor = color;
+      document.getElementById(blockId).style.backgroundColor = color;
     });
 
-    resetButton.addEventListener("click", () => {
-      resetGridColors();
-    });
+    resetButton.addEventListener("click", resetGridColors);
   </script>
 
 </body>
